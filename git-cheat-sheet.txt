@@ -1,0 +1,5 @@
+git show - show details of each commit.
+git log - show precious commits in the repository.
+git checkout - to check out the version of the commit.
+git init - create a folder (.git) that contain changes that occur in the repository.
+git reset - to undo or unstage previous commit.
