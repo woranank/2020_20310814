@@ -5,7 +5,13 @@
 *.exe
 *.o
 *.so
+*.a
+*.lib
+*.exp
 *.obj
-build/
-
+*.sln
+*.vcxproj
+*.cmake
+*.filters
+*[Bb]uild/
 
