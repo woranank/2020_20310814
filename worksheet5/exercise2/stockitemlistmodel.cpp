@@ -35,7 +35,14 @@ void StockItemListModel::addItem( const StockItem & s ) {
 }
 
 void StockItemListModel::insertItem( const StockItem &s, const QModelIndex & index ) {
-    //?? (same as add item)
+    if( index.isValid() && index.row() >= 0 && index.row() < stockItems.size() ) {
+    // This emits a signal to warn the listView that extra rows will be added
+    emit beginInsertRows( QModelIndex(), stockItems.size()-1, stockItems.size()-1 );
+    // Add the extra item to the list
+    stockItems.insert(stockItems.begin()+index.row()+1, s );
+    // Emits a signal to say rows have been added.
+    emit endInsertRows();
+    }
 }
 
 void StockItemListModel::setItem( const StockItem &s, const QModelIndex & index ) {
@@ -48,7 +55,7 @@ void StockItemListModel::setItem( const StockItem &s, const QModelIndex & index 
 }
 
 void StockItemListModel::removeItem( const QModelIndex & index ) {
-    //?? (~ same as add item)
+    stockItems.erase(stockItems.begin()+index.row());
 }
 
 // to allow accessing stored list item properties
@@ -58,6 +65,7 @@ StockItem StockItemListModel::getItem( const QModelIndex & index ) const {
 
     return StockItem();
 }
+
 // ---------------------------------------------------------------------
 
 

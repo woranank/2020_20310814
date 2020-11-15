@@ -29,11 +29,22 @@ delete ui;
 }
 
 void MainWindow::handleAddButton() {
+    QModelIndexList selectedList;
+
+    selectedList = ui->listView->selectionModel()->selectedIndexes();
+
     StockItem item;
-    stockList.addItem( item );
+
+    if( selectedList.length() == 1 ) {
+        stockList.insertItem( item, selectedList[0]);
+    }
+    else{
+        stockList.addItem(item);
+    }
 
     emit statusUpdateMessage( QString("Add button was clicked"), 0 );
 }
+
 
 void MainWindow::handleEditButton() {
     EditItemDialog dialog( this );
@@ -58,5 +69,31 @@ void MainWindow::handleEditButton() {
 void MainWindow::handleRemoveButton() {
 
     emit statusUpdateMessage( QString("Remove button was clicked"), 0 );
+    QModelIndexList selectedList;
+
+    selectedList = ui->listView->selectionModel()->selectedIndexes();
+
+    if(selectedList.length() == 1){
+        stockList.removeItem(selectedList[0]);
+    } 
+
+}
+
+void MainWindow::on_action_Save_triggered(){
+
+    //create file dialog
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save file"), "C://", tr("Text files (*.txt)"));
+
+    /*if (fileName != ""){
+        QFile file(QFileInfo(fileName).absoluteFilePath());
+
+        if (file.open(QIODevice::WriteOnly)){
+            QString text = ui->plainTextEdit->toPlainText();
+            QTextStream out(&file);
+            out << text;
+            file.close();
+        }
+    }*/
+
 
 }

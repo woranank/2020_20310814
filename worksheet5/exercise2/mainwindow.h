@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <stockitemlistmodel.h>
+#include <QFileDialog>
+
+#include "stockitemlistmodel.h"
 
 
 namespace Ui {
@@ -20,16 +22,19 @@ public:
 private:
     Ui::MainWindow *ui;
 
-private:
     StockItemListModel stockList;
 
 public slots:
     void handleAddButton();
     void handleEditButton();
     void handleRemoveButton();
+    void on_action_Save_triggered();
 
 signals:
     void statusUpdateMessage( const QString & message, int timeout );
+
+//private slots:
+    //void on_action_Save_triggered();
 };
 
 
