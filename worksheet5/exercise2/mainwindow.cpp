@@ -1,10 +1,16 @@
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
+#include <QStringList>
+#include <QString>
+#include <QAbstractItemModel>
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "stockitem.h"
 #include "edititemdialog.h"
 
-
-#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 MainWindow::~MainWindow() {
-delete ui;
+    delete ui;
 }
 
 void MainWindow::handleAddButton() {
@@ -81,19 +87,30 @@ void MainWindow::handleRemoveButton() {
 
 void MainWindow::on_action_Save_triggered(){
 
-    //create file dialog
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save file"), "C://", tr("Text files (*.txt)"));
+    emit statusUpdateMessage( QString("Text file saved"), 0 );
 
-    /*if (fileName != ""){
-        QFile file(QFileInfo(fileName).absoluteFilePath());
 
-        if (file.open(QIODevice::WriteOnly)){
-            QString text = ui->plainTextEdit->toPlainText();
-            QTextStream out(&file);
-            out << text;
-            file.close();
+    //savefiledialog file name
+    QString fileName = QFileDialog::getSaveFileName(this, "Save file", "C://", "Text files (*.txt)");
+
+    //create file
+    if (fileName.isEmpty())
+            return;
+    else {
+        QFile file(fileName);
+
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::information(this, tr("Unable to open file"), file.errorString());
+            return;
+            }
+
+        //file content
+        QTextStream out(&file);
+        out << "---Stocklist---" << "\n";
+        for (int i=0; i<stockList.rowCount(); i++){
+            out << stockList.getItemName(i) << "\n";
         }
-    }*/
-
-
+    }
 }
+
+

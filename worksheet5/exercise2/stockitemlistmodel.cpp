@@ -66,6 +66,11 @@ StockItem StockItemListModel::getItem( const QModelIndex & index ) const {
     return StockItem();
 }
 
+QString StockItemListModel::getItemName(int i){
+    return stockItems[i].getName();
+}
+
+
 // ---------------------------------------------------------------------
 
 

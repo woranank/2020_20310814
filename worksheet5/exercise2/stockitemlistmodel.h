@@ -17,11 +17,14 @@ public:
     int rowCount( const QModelIndex &parent = QModelIndex() ) const;
     QVariant data( const QModelIndex &index, int role ) const;
 
+    QString getItemName(int i);
+
     // To allow modifying stored list
     void addItem( const StockItem &s );
     void insertItem( const StockItem &s, const QModelIndex &index );
     void setItem( const StockItem &s, const QModelIndex &index );
     void removeItem( const QModelIndex &index );
+
     void clearList();
 
     // to allow accessing stored list item properties

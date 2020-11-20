@@ -77,15 +77,12 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="action_Open"/>
     <addaction name="action_Save"/>
-    <addaction name="actionPrint"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionHelp"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -97,59 +94,19 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_Open"/>
-   <addaction name="separator"/>
    <addaction name="action_Save"/>
-   <addaction name="separator"/>
-   <addaction name="actionPrint"/>
-   <addaction name="separator"/>
-   <addaction name="actionHelp"/>
-   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="action_Open">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/fileopen.png</normaloff>icon/fileopen.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Open</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
   <action name="action_Save">
    <property name="icon">
     <iconset>
-     <normaloff>icon/filesave.png</normaloff>icon/filesave.png</iconset>
+     <normaloff>icon/saveicon.png</normaloff>icon/saveicon.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionPrint">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/print.png</normaloff>icon/print.png</iconset>
-   </property>
-   <property name="text">
-    <string>Print</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="actionHelp">
-   <property name="icon">
-    <iconset>
-     <normaloff>icon/help.png</normaloff>icon/help.png</iconset>
-   </property>
-   <property name="text">
-    <string>Help</string>
    </property>
   </action>
  </widget>

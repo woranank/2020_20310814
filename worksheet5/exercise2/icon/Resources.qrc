@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>File_Add-512.png</file>
-        <file>save--v2.png</file>
-    </qresource>
-</RCC>
