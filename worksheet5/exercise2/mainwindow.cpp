@@ -98,11 +98,7 @@ void MainWindow::on_action_Save_triggered(){
             return;
     else {
         QFile file(fileName);
-
-        if (!file.open(QIODevice::WriteOnly)) {
-            QMessageBox::information(this, tr("Unable to open file"), file.errorString());
-            return;
-            }
+        file.open(QIODevice::WriteOnly);
 
         //file content
         QTextStream out(&file);
@@ -110,6 +106,8 @@ void MainWindow::on_action_Save_triggered(){
         for (int i=0; i<stockList.rowCount(); i++){
             out << stockList.getItemName(i) << "\n";
         }
+
+        file.close();
     }
 }
 
