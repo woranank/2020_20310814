@@ -1,9 +1,13 @@
 // stockitem.cpp ---------------------------------------------------------
 #include "stockitem.h"
+
+//setters of item name, cost, stock level, reorder
 void StockItem::setName( const QString & name ) { this->name = name; }
 void StockItem::setUnitCost( double unitCost ) { this->unitCost = unitCost; }
 void StockItem::setStockLevel( int stockLevel ) { this->stockLevel = stockLevel; }
 void StockItem::setReorder( bool reorder ) { this->reorder = reorder; }
+
+//getters of item name, cost, stock level, reorder
 QString StockItem::getName() const { return this->name; }
 double StockItem::getUnitCost() const { return this->unitCost; }
 int StockItem::getStockLevel() const { return this->stockLevel; }

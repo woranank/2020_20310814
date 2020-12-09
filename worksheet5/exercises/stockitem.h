@@ -12,11 +12,14 @@ name( "Item_Name" ), unitCost( 0. ), stockLevel( 0 ), reorder( false ) {}
 StockItem( const char * n, double u, int s, bool b ) :
 name( n ), unitCost( u ), stockLevel( s ), reorder( b ) {}
 
+
+// setters
 void setName( const QString & name );
 void setUnitCost( double unitCost );
 void setStockLevel( int stockLevel );
 void setReorder( bool reorder );
 
+// getters
 QString getName() const;
 double getUnitCost() const;
 int getStockLevel() const;

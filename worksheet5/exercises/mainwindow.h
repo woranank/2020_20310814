@@ -25,9 +25,16 @@ private:
     StockItemListModel stockList;
 
 public slots:
+    // add item function
     void handleAddButton();
+
+    //edit item function
     void handleEditButton();
+
+    //remove item function
     void handleRemoveButton();
+
+    //save as text file function
     void on_action_Save_triggered();
 
 signals:

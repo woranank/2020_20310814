@@ -66,6 +66,7 @@ StockItem StockItemListModel::getItem( const QModelIndex & index ) const {
     return StockItem();
 }
 
+// to get only the item name in the list
 QString StockItemListModel::getItemName(int i){
     return stockItems[i].getName();
 }
