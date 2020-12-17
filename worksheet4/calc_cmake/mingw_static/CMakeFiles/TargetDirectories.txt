@@ -1,4 +1,0 @@
-C:/Users/milkw/Documents/Computer_Project/2020_20310814/Worksheet4/hello_cmake/calc_cmake/mingw_static/CMakeFiles/calc.dir
-C:/Users/milkw/Documents/Computer_Project/2020_20310814/Worksheet4/hello_cmake/calc_cmake/mingw_static/CMakeFiles/maths.dir
-C:/Users/milkw/Documents/Computer_Project/2020_20310814/Worksheet4/hello_cmake/calc_cmake/mingw_static/CMakeFiles/edit_cache.dir
-C:/Users/milkw/Documents/Computer_Project/2020_20310814/Worksheet4/hello_cmake/calc_cmake/mingw_static/CMakeFiles/rebuild_cache.dir
