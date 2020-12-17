@@ -1,2 +1,0 @@
-C:\Users\milkw\Documents\Computer_Project\2020_20310814\Worksheet4\hello_cmake\build2\Debug\hello.exe.lastcodeanalysissucceeded
-C:\Users\milkw\Documents\Computer_Project\2020_20310814\Worksheet4\hello_cmake\build2\hello.dir\Debug\NativeCodeAnalysis.read.1.tlog
