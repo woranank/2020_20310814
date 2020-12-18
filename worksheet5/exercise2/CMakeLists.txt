@@ -20,7 +20,7 @@ set( CMAKE_AUTOUIC ON )
 find_package( Qt5Widgets )
 
 #set( ICONS icon/icon.qrc)
-#qt5_add_resources( QRC_Srcs ${ICONS}) */
+#qt5_add_resources( QRC_Srcs ${ICONS})
 
 # Same as previously: define the executable and it's sources.
 add_executable( hello_qt2 WIN32
