@@ -1,12 +1,6 @@
 Woranan Kamonlattana
-"Priority: code stability"
-"Priority: cool stuff" 
+Student ID: 20310814
 
-"User 1 says hello!" 
+This GIT respository is a part of EEEE2046 (Computer Project) as an individual component.
 
-User 1
-"I want it that way." 
-
-User 2
-"I want it this way." 
-
+Contain assignments from worksheet 2 to 8.
