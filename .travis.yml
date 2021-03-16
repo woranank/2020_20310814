@@ -8,6 +8,6 @@ branches:
      
 # Build your code
 script:
-  - cd build
+  - cd worksheet7/build
   - cmake -G "MinGW Makefiles" ..
   - mingw32-make 
