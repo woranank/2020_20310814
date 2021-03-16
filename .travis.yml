@@ -9,5 +9,6 @@ branches:
 # Build your code
 script:
   - cd worksheet7
-  - cmake -G "MinGW Makefiles" ..
-  - mingw32-make 
+  - cmake .
+  - make
+  - make test
