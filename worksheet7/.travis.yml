@@ -8,6 +8,6 @@ branches:
      
 # Build your code
 script:
-  - cmake .
-  - make
-  - make test
+  - cd build
+  - cmake -G "MinGW Makefiles" ..
+  - mingw32-make 
