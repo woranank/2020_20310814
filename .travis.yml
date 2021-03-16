@@ -2,12 +2,12 @@
 sudo: false
 
 branches:
-	except:
-		- gh-pages
+  except:
+    - gh-pages
      
      
 # Build your code
 script:
-    - cmake .
-    - make
-    - make test
+  - cmake .
+  - make
+  - make test
