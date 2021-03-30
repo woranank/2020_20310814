@@ -14,7 +14,7 @@
 *.cmake
 *.filters
 *[Bb]uild/
-html/
+*html/
 
 
 # visual studios
