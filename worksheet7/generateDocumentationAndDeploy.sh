@@ -1,5 +1,4 @@
 #!/bin/sh
-__AUTHOR__="Jeroen de Bruijn"
 set -e
 
 mkdir code_docs
