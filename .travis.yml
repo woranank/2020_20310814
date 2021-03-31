@@ -10,7 +10,7 @@ branches:
 env:
   global:
     - GH_REPO_NAME: 2020_20310814
-    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
+    - DOXYFILE: $TRAVIS_BUILD_DIR/worksheet7/Doxyfile
     - GH_REPO_REF: github.com/woranank/2020_20310814.git
 
 # The virtual machines created by Travis do not by default have doxygen
