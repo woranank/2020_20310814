@@ -6,6 +6,7 @@ cd code_docs
 
 # Use the Token to gain access to the private repo.
 git clone -b gh-pages "https://${GH_REPO_TOKEN}@${GH_REPO_REF}"
+cd worksheet7
 cd $GH_REPO_NAME
 
 git config --global push.default simple
