@@ -13,12 +13,12 @@ rm -rf *
 echo "" > .nojekyll
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 if [ -d "html" ] && [ -f "html/index.html" ]; then
-git add --all
-git commit -m "Deploy docs: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
-git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" > /dev/null 2>&1
+	git add --all
+	git commit -m "Deploy docs: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
+	git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" > /dev/null 2>&1
 else
-echo '' >&2
-echo 'Warning: No documentation (html) files have been found!' >&2
-echo 'Warning: Not going to push the documentation to GitHub!' >&2
+	echo '' >&2
+	echo 'Warning: No documentation (html) files have been found!' >&2
+	echo 'Warning: Not going to push the documentation to GitHub!' >&2
 exit 1
 fi

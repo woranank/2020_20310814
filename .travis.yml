@@ -9,9 +9,9 @@
 # variables that will be used in generateDocumentationAndDeploy.sh
 env:
   global:
-    - GH_REPO_NAME: 2020_20310814
+    - GH_REPO_NAME: 2020_20310814_Woranan
     - DOXYFILE: $TRAVIS_BUILD_DIR/worksheet7/Doxyfile
-    - GH_REPO_REF: github.com/woranank/2020_20310814.git
+    - GH_REPO_REF: github.com/woranank/2020_20310814_Woranan.git
 
 # The virtual machines created by Travis do not by default have doxygen
 # installed. This is fortunately not difficult on a Debian flavoured Linux
