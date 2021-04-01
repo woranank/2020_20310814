@@ -25,7 +25,7 @@ addons:
 # Finally we define the script that Travis will run every time code is submitted
 # to the repository.
 script:
-  - cd $TRAVIS_BUILD_DIR/worksheet7
+  - cd worksheet7
   - cmake .
   - make
   - make test
