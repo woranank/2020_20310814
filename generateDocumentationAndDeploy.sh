@@ -1,4 +1,5 @@
 #!/bin/sh
+__AUTHOR__="Woranan"
 set -e
 
 mkdir code_docs

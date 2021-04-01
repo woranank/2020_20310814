@@ -1,16 +1,16 @@
 # .travis.yml
-sudo: false
+#sudo: false
 
-branches:
-  except:
-    - gh-pages
+#branches:
+  #except:
+    #- gh-pages
      
 
 # variables that will be used in generateDocumentationAndDeploy.sh
 env:
   global:
     - GH_REPO_NAME: 2020_20310814
-    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
+    - DOXYFILE: $TRAVIS_BUILD_DIR/worksheet7/Doxyfile
     - GH_REPO_REF: github.com/woranank/2020_20310814.git
 
 # The virtual machines created by Travis do not by default have doxygen
@@ -25,7 +25,7 @@ addons:
 # Finally we define the script that Travis will run every time code is submitted
 # to the repository.
 script:
-  - cd "${TRAVIS_BUILD_DIR}/worksheet7"
+  - cd $TRAVIS_BUILD_DIR/worksheet7
   - cmake .
   - make
   - make test
@@ -35,6 +35,6 @@ script:
 # instruction to scan the code for docstrings and generate the html output.
 # The bulk of these instructions is encapsulated in a script.
 after_success:
-  - cd "$TRAVIS_BUILD_DIR/worksheet7"
+  #- cd $TRAVIS_BUILD_DIR
   - chmod +x generateDocumentationAndDeploy.sh
   - ./generateDocumentationAndDeploy.sh
