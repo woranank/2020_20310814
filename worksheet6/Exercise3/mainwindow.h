@@ -48,28 +48,13 @@ public:
 	
 	void on_actionFileOpen_triggered();
 	
-	void handleClipCheckbox(int);
-	void handleShrinkCheckbox(int);
+	void handleClipFilter(bool checked);
+	void handleShrinkFilter(bool checked);
 	
-	void handleBGColorButton();
-	void handleModelColorButton();
-	void handleModelShapeButton();
-	void handleViewButton();
+	void handleModelColor();
+	void handleModelView();
 	
-	void handleIntensitySlider(int);
-	
-	void handleHexaButton();
-	void handleTetraButton();
-	void handlePyraButton();
-	
-	void createHexahedron();
-	void createTetrahedron();
-	void createPyramid();
-	
-	void shrinkFilterFunc();
-	void clipFilterFunc();
-	
-	void refreshRender();
+	void handleLightIntensity();
 	
 	int objectType = 0;
 	
@@ -82,11 +67,19 @@ private:
 	vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
 	vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
 	vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+	vtkSmartPointer<vtkSTLReader> reader = vtkSmartPointer<vtkSTLReader>::New();
+	vtkSmartPointer<vtkLight> light = vtkSmartPointer<vtkLight>::New();
+	vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	
+	/*
 	vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
 	vtkSmartPointer<vtkCellArray> hexs = vtkSmartPointer<vtkCellArray>::New();
 	vtkSmartPointer<vtkUnstructuredGrid> uGrid = vtkSmartPointer<vtkUnstructuredGrid>::New();
-	std::vector<std::array<double, 3>> pointCoordinates;
+	*/
+	
+	vtkSmartPointer<vtkShrinkFilter> shrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+	vtkSmartPointer<vtkPlane> planeLeft = vtkSmartPointer<vtkPlane>::New();
+	vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
 	
 };
 
