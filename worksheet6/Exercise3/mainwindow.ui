@@ -37,14 +37,14 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QPushButton" name="model_View">
+        <widget class="QPushButton" name="modelView">
          <property name="text">
           <string>Reset Model View</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="model_Color">
+        <widget class="QPushButton" name="modelColor">
          <property name="text">
           <string>Change Model Color</string>
          </property>
@@ -67,7 +67,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QSlider" name="light_Intensity">
+   <widget class="QSlider" name="filterLight">
     <property name="geometry">
      <rect>
       <x>100</x>
@@ -80,7 +80,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QCheckBox" name="shrink_Filter">
+   <widget class="QCheckBox" name="filterShrink">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -93,7 +93,7 @@
      <string>Apply Shrink Filter</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="clip_Filter">
+   <widget class="QCheckBox" name="filterClip">
     <property name="geometry">
      <rect>
       <x>160</x>
