@@ -7,8 +7,10 @@
 #include <vtkCubeSource.h>
 #include <vtkDataSetMapper.h>
 #include <vtkGenericOpenGLRenderWindow.h>
+#include <vtkLight.h>
 #include <vtkNamedColors.h>
 #include <vtkNew.h>
+#include <vtkPlane.h>
 #include <vtkPoints.h>
 #include <vtkPolyData.h>
 #include <vtkPolyDataMapper.h>
@@ -21,13 +23,13 @@
 
 #include <vtkShrinkFilter.h>
 #include <vtkClipDataSet.h>
-#include <vtkPlane.h>
 
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QString>
 #include <QColor>
 #include <QColorDialog>
+#include <QSlider>
 
 
 namespace Ui {
@@ -43,10 +45,13 @@ public:
 	~MainWindow();
 	 
 	void on_actionFileOpen_triggered();
-	void on_modelColor_released();
-	//void on_modelView_released();
-	//void on_filterClip_clicked(bool checked);
-	//void on_filterShrink_clicked(bool checked);
+	void on_modelColor_clicked();
+	void on_bgColor_clicked();
+	void on_modelView_clicked();
+	void on_filterClip_clicked(bool checked);
+	void on_filterShrink_clicked(bool checked);
+	void on_lightSlider_sliderMoved(int position);
+	
 	
 
 private:
@@ -58,6 +63,12 @@ private:
     vtkSmartPointer<vtkNamedColors> colors;
     vtkSmartPointer<vtkRenderer> renderer;
 	vtkSmartPointer<vtkSTLReader> reader;
+	vtkSmartPointer<vtkLight> light;
+	vtkSmartPointer<vtkCamera> camera;
+	vtkSmartPointer<vtkPlane> planeLeft;
+	
+	vtkSmartPointer<vtkClipDataSet> clipFilter; 
+	vtkSmartPointer<vtkShrinkFilter> shrinkFilter;
 	
 };
 

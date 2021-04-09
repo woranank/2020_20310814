@@ -10,19 +10,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	vtkNew<vtkGenericOpenGLRenderWindow> renderWindow;
 	ui->qvtkWidget->SetRenderWindow( renderWindow );
 	
-	
     connect( ui->actionFileOpen, &QAction::triggered, this, &MainWindow::on_actionFileOpen_triggered );
-	connect( ui->modelColor, &QPushButton::released, this, &MainWindow::on_modelColor_released );
-	//connect( ui->modelView, &QPushButton::clicked, this, &MainWindow::on_modelView_clicked );
-	//connect( ui->filterClip, &QAbstractButton::clicked, this, &MainWindow::on_filterClip_clicked );
-	//connect( ui->filterShrink, &QAbstractButton::clicked, this, &MainWindow::on_filterShrink_clicked );
-
-
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
+	connect( ui->modelColor, &QPushButton::clicked, this, &MainWindow::on_modelColor_clicked );
+	connect( ui->bgColor, &QPushButton::clicked, this, &MainWindow::on_bgColor_clicked );
+	connect( ui->modelView, &QPushButton::clicked, this, &MainWindow::on_modelView_clicked );
+	connect( ui->filterClip, &QAbstractButton::clicked, this, &MainWindow::on_filterClip_clicked );
+	connect( ui->filterShrink, &QAbstractButton::clicked, this, &MainWindow::on_filterShrink_clicked );
+	connect( ui->lightSlider, &QSlider::sliderMoved, this, &MainWindow::on_lightSlider_sliderMoved );
+	
 }
 
 void MainWindow::on_actionFileOpen_triggered()
@@ -48,9 +43,23 @@ void MainWindow::on_actionFileOpen_triggered()
 		mapper = vtkSmartPointer<vtkDataSetMapper>::New();
 		mapper->SetInputConnection(reader->GetOutputPort());
 
+		// Add light
+		light = vtkSmartPointer<vtkLight>::New();
+        light->SetLightTypeToHeadlight();
+        /*light->SetPosition( 5, 5, 15 );
+		light->SetPositional( true );
+		light->SetConeAngle( 10 );
+		light->SetFocalPoint( 0, 0, 0 );
+		light->SetDiffuseColor( 1, 1, 1 );
+		light->SetAmbientColor( 1, 1, 1 );
+		light->SetSpecularColor( 1, 1, 1 );*/
+		light->SetIntensity( 1 );
+		
 		// Create an actor that is used to set the model's properties for rendering and place it in the window
 		actor = vtkSmartPointer<vtkActor>::New();
 		actor->SetMapper(mapper);
+		colors = vtkSmartPointer<vtkNamedColors>::New();
+	    actor->GetProperty()->SetColor( colors->GetColor3d("White").GetData() );
 		actor->GetProperty()->EdgeVisibilityOn();
 
 		// Create a renderer, and render window
@@ -58,21 +67,18 @@ void MainWindow::on_actionFileOpen_triggered()
 		ui->qvtkWidget->GetRenderWindow()->AddRenderer(renderer);
 
 		renderer->AddActor(actor);
+		renderer->AddLight(light);
+		renderer->SetBackground( colors->GetColor3d("Silver").GetData() );
 		
-		//colors = vtkSmartPointer<vtkNamedColors>::New();
-		//renderer->SetBackground( colors->GetColor3d("Silver").GetData() );
-		renderer->SetBackground(.3, .6, .3); // Background color green 	
-		
-		/*
 		// Setup the renderers's camera
 		renderer->ResetCamera();
 		renderer->GetActiveCamera()->Azimuth(30);
 		renderer->GetActiveCamera()->Elevation(30);
-		renderer->ResetCameraClippingRange();*/
+		renderer->ResetCameraClippingRange();
 	}
 }
 
-void MainWindow::on_modelColor_released()
+void MainWindow::on_modelColor_clicked()
 {
 	QColor color = QColorDialog::getColor(Qt::white, this);
 	
@@ -80,30 +86,90 @@ void MainWindow::on_modelColor_released()
 	{
 		actor->GetProperty()->SetColor(color.redF(),color.greenF(),color.blueF());
 		ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );
+	}
+}
+
+void MainWindow::on_bgColor_clicked()
+{
+	QColor color = QColorDialog::getColor(Qt::white, this);
+	
+	if ( color.isValid() )
+	{
+		renderer->SetBackground(color.redF(),color.greenF(),color.blueF());
 	}		
 }
 
-/*
+void MainWindow::on_modelView_clicked()
+{
+	camera = vtkSmartPointer<vtkCamera>::New();
+	camera->SetPosition(0, 0, 20);
+	camera->SetFocalPoint(0, 0, 0);
+  
+	// Create a renderer, render window, and interactor
+	vtkSmartPointer<vtkRenderer>::New();
+	renderer->SetActiveCamera(camera);
+	
+}
+
+void MainWindow::on_lightSlider_sliderMoved(int position)
+{
+	position = ui->lightSlider->value();
+	light->SetIntensity((float)(position) / 100);
+	
+	// Render
+	ui->qvtkWidget->GetRenderWindow()->Render();
+}
+
+
 void MainWindow::on_filterClip_clicked(bool checked)
 {
 	if (checked)
 	{
-		// this will apply a clipping plane whose normal is the x-axis that crosses the x-axis at x=0
-		vtkSmartPointer<vtkPlane> planeLeft = vtkSmartPointer<vtkPlane>::New();
+		planeLeft = vtkSmartPointer<vtkPlane>::New();
 		planeLeft->SetOrigin(0.0, 0.0, 0.0);
 		planeLeft->SetNormal(-1.0, 0.0, 0.0);
 	
-		vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
-		vtkSmartPointer<vtkSTLReader> reader = vtkSmartPointer<vtkSTLReader>::New();
+		clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
 		clipFilter->SetInputConnection( reader->GetOutputPort() ) ;
 		clipFilter->SetClipFunction( planeLeft.Get() );
 		
-		vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
+		mapper = vtkSmartPointer<vtkDataSetMapper>::New();
 		mapper->SetInputConnection( clipFilter->GetOutputPort() );
 	}
 	
+	//ui->qvtkWidget->GetRenderWindow()->Render();
+	ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );
+}
+
+void MainWindow::on_filterShrink_clicked(bool checked)
+{
+	if (checked)
+	{
+		shrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+		shrinkFilter->SetInputConnection( reader->GetOutputPort() );
+		shrinkFilter->SetShrinkFactor(.8);
+		shrinkFilter->Update();
+		mapper->SetInputConnection( shrinkFilter->GetOutputPort() );
+	}
+	else
+	{
+		shrinkFilter = vtkSmartPointer<vtkShrinkFilter>::New();
+		shrinkFilter->SetInputConnection( reader->GetOutputPort() );
+		shrinkFilter->SetShrinkFactor(1);
+		shrinkFilter->Update();
+		mapper->SetInputConnection( shrinkFilter->GetOutputPort() );
+	}
+	
 	ui->qvtkWidget->GetRenderWindow()->Render();
-}*/
+	//ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );
+}
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
 	
 
 
