@@ -126,6 +126,45 @@
      <string>Light Intensity</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="tetra">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Tetrahedron</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="hexa">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hexahedron</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pyramid">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pyramid</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -157,9 +196,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionFileOpen"/>
-   <addaction name="actionFileSave"/>
-   <addaction name="actionPrint"/>
-   <addaction name="actionHelp"/>
   </widget>
   <action name="actionFileOpen">
    <property name="icon">
