@@ -5,7 +5,7 @@ This GIT respository is a part of EEEE2046 (Computer Project) as an individual c
 
 Contain assignments from worksheet 2 to 8.
 
-[![Build Status](https://travis-ci.com/woranank/2020_20310814.svg?branch=master)]
-(https://travis-ci.org/woranank/2020_20310814_Woranan)
+[![Build Status](https://travis-ci.com/woranank/2020_20310814_Woranan.svg?branch=master)]
+(https://travis-ci.com/github/woranank/2020_20310814_Woranan)
 
 A fully tested code repository!
